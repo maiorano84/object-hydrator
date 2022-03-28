@@ -13,11 +13,6 @@ interface HydrationMappingInterface
     public function getKey(): string;
 
     /**
-     * @return Reflector
-     */
-    public function getReflector(): Reflector;
-
-    /**
      * @return ?ReflectionNamedType
      */
     public function getType(): ?ReflectionNamedType;

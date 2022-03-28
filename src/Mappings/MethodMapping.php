@@ -39,14 +39,6 @@ class MethodMapping implements HydrationMappingInterface
     }
 
     /**
-     * @return ReflectionMethod
-     */
-    public function getReflector(): ReflectionMethod
-    {
-        return $this->reflector;
-    }
-
-    /**
      * @return ?ReflectionNamedType
      */
     #[Pure]

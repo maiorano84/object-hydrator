@@ -29,14 +29,6 @@ class PropertyMapping implements HydrationMappingInterface
     }
 
     /**
-     * @return ReflectionProperty
-     */
-    public function getReflector(): ReflectionProperty
-    {
-        return $this->reflector;
-    }
-
-    /**
      * @return string
      */
     #[Pure]
