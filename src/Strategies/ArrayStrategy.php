@@ -2,6 +2,7 @@
 
 namespace Maiorano\ObjectHydrator\Strategies;
 
+use Generator;
 use Maiorano\ObjectHydrator\Attributes\HydrationKey;
 use Maiorano\ObjectHydrator\Mappings\HydrationMappingInterface;
 use Maiorano\ObjectHydrator\Mappings\MethodMapping;
@@ -13,23 +14,40 @@ class ArrayStrategy implements HydrationStrategyInterface
 {
     use RecursiveCheckTrait;
 
+    /**
+     * @var array
+     */
     private array $config;
+    /**
+     * @var HydrationMappingInterface[]
+     */
     private array $mappings;
 
+    /**
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * @param object $object
+     * @return void
+     */
     public function initialize(object $object): void
     {
         $this->mappings = iterator_to_array($this->generateMappings($object));
     }
 
-    private function generateMappings(object $object)
+    /**
+     * @param object $object
+     * @return Generator
+     */
+    private function generateMappings(object $object): Generator
     {
         foreach ($this->config as $key => $value) {
-            if (is_bool($value) && property_exists($object, $key)) {
+            if ($value === true && property_exists($object, $key)) {
                 $property = new ReflectionProperty($object, $key);
                 yield $key => new PropertyMapping($property, new HydrationKey($key));
             } else if (is_string($value) && method_exists($object, $value)) {
@@ -39,11 +57,19 @@ class ArrayStrategy implements HydrationStrategyInterface
         }
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function hasMatchingKey(string $key): bool
     {
         return isset($this->mappings[$key]);
     }
 
+    /**
+     * @param string $key
+     * @return HydrationMappingInterface
+     */
     public function getMapping(string $key): HydrationMappingInterface
     {
         return $this->mappings[$key];

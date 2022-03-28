@@ -13,6 +13,7 @@ use ReflectionProperty;
 final class PropertiesStrategy implements HydrationStrategyInterface
 {
     use RecursiveCheckTrait;
+    use AttributeReflectionTrait;
 
     /**
      * @var int
@@ -42,20 +43,9 @@ final class PropertiesStrategy implements HydrationStrategyInterface
     public function initialize(object $object): void
     {
         $this->reflectionClass = new ReflectionClass($object);
-        $this->properties = iterator_to_array($this->generateKeyMap());
-    }
-
-    /**
-     * @return Generator
-     */
-    private function generateKeyMap(): Generator
-    {
-        foreach ($this->reflectionClass->getProperties($this->propertyTypes) as $property) {
-            $attributes = $property->getAttributes(HydrationKey::class);
-            yield from $attributes
-                ? $this->generateKeysFromAttributes($property, $attributes)
-                : $this->generateKeysFromNames($property);
-        }
+        $this->properties = iterator_to_array($this->generateKeyMap(
+            $this->reflectionClass->getProperties($this->propertyTypes)
+        ));
     }
 
     /**
