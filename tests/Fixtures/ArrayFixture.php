@@ -8,10 +8,10 @@ use Maiorano\ObjectHydrator\Strategies\ArrayStrategy;
 #[HydrationStrategy(ArrayStrategy::class, [
     'private' => true,
     'protected' => true,
-    'public' => true,
+    'namedProp' => 'public',
     'innerFixture' => 'setInnerFixture'
 ])]
-class ArrayConfigurationFixture
+class ArrayFixture
 {
     public int $unset = 1;
     public string $public;

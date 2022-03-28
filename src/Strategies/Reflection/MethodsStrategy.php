@@ -55,6 +55,24 @@ final class MethodsStrategy implements HydrationStrategyInterface
     }
 
     /**
+     * @param string $key
+     * @return bool
+     */
+    public function hasMatchingKey(string $key): bool
+    {
+        return isset($this->methods[$key]);
+    }
+
+    /**
+     * @param string $key
+     * @return MethodMapping
+     */
+    public function getMapping(string $key): MethodMapping
+    {
+        return $this->methods[$key];
+    }
+
+    /**
      * @param ReflectionMethod $method
      * @param array $attributes
      * @return Generator
@@ -102,23 +120,5 @@ final class MethodsStrategy implements HydrationStrategyInterface
     private function cleanName(string $name): string
     {
         return lcfirst(preg_replace('/[^a-zA-Z]/', '', $name));
-    }
-
-    /**
-     * @param string $key
-     * @return bool
-     */
-    public function hasMatchingKey(string $key): bool
-    {
-        return isset($this->methods[$key]);
-    }
-
-    /**
-     * @param string $key
-     * @return MethodMapping
-     */
-    public function getMapping(string $key): MethodMapping
-    {
-        return $this->methods[$key];
     }
 }

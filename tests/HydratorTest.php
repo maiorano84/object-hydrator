@@ -4,7 +4,7 @@ namespace Maiorano\ObjectHydrator\Tests;
 
 use Maiorano\ObjectHydrator\Hydrator;
 use Maiorano\ObjectHydrator\HydratorInterface;
-use Maiorano\ObjectHydrator\Tests\Fixtures\ArrayConfigurationFixture;
+use Maiorano\ObjectHydrator\Tests\Fixtures\ArrayFixture;
 use Maiorano\ObjectHydrator\Tests\Fixtures\MethodsFixture;
 use Maiorano\ObjectHydrator\Tests\Fixtures\PropertiesFixture;
 use PHPUnit\Framework\TestCase;
@@ -63,11 +63,11 @@ class HydratorTest extends TestCase
     public function testArrayConfiguration()
     {
         /**
-         * @var ArrayConfigurationFixture $hydrated
+         * @var ArrayFixture $hydrated
          */
-        $hydrated = $this->hydrator->hydrate(new ArrayConfigurationFixture, [
+        $hydrated = $this->hydrator->hydrate(new ArrayFixture, [
             'unset' => 2,
-            'public' => 'foo',
+            'namedProp' => 'foo',
             'protected' => 'bar',
             'private' => 'baz',
             'innerFixture' => [

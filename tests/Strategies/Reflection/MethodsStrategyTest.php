@@ -28,7 +28,7 @@ class MethodsStrategyTest extends TestCase
 
     public function testIsRecursive()
     {
-        $this->assertTrue($this->strategy->isRecursive('innerFixture', null));
+        $this->assertFalse($this->strategy->isRecursive('innerFixture', null));
     }
 
     public function testGetMapping()

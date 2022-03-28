@@ -49,6 +49,24 @@ final class PropertiesStrategy implements HydrationStrategyInterface
     }
 
     /**
+     * @param string $key
+     * @return bool
+     */
+    public function hasMatchingKey(string $key): bool
+    {
+        return isset($this->properties[$key]);
+    }
+
+    /**
+     * @param string $key
+     * @return PropertyMapping
+     */
+    public function getMapping(string $key): PropertyMapping
+    {
+        return $this->properties[$key];
+    }
+
+    /**
      * @param ReflectionProperty $property
      * @param array $attributes
      * @return Generator
@@ -69,23 +87,5 @@ final class PropertiesStrategy implements HydrationStrategyInterface
     {
         $mapping = new PropertyMapping($property, new HydrationKey($property->getName()));
         yield $mapping->getKey() => $mapping;
-    }
-
-    /**
-     * @param string $key
-     * @return bool
-     */
-    public function hasMatchingKey(string $key): bool
-    {
-        return isset($this->properties[$key]);
-    }
-
-    /**
-     * @param string $key
-     * @return PropertyMapping
-     */
-    public function getMapping(string $key): PropertyMapping
-    {
-        return $this->properties[$key];
     }
 }

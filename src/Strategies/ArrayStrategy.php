@@ -48,13 +48,33 @@ class ArrayStrategy implements HydrationStrategyInterface
     {
         foreach ($this->config as $key => $value) {
             if ($value === true && property_exists($object, $key)) {
-                $property = new ReflectionProperty($object, $key);
-                yield $key => new PropertyMapping($property, new HydrationKey($key));
+                yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $key), $key);
+            } else if (is_string($value) && property_exists($object, $value)) {
+                yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $value), $key);
             } else if (is_string($value) && method_exists($object, $value)) {
-                $method = new ReflectionMethod($object, $value);
-                yield $key => new MethodMapping($method, new HydrationKey($key));
+                yield $key => $this->createMethodMapping(new ReflectionMethod($object, $value), $key);
             }
         }
+    }
+
+    /**
+     * @param ReflectionProperty $reflector
+     * @param string $key
+     * @return HydrationMappingInterface
+     */
+    private function createPropertyMapping(ReflectionProperty $reflector, string $key): HydrationMappingInterface
+    {
+        return new PropertyMapping($reflector, new HydrationKey($key));
+    }
+
+    /**
+     * @param ReflectionMethod $reflector
+     * @param string $key
+     * @return HydrationMappingInterface
+     */
+    private function createMethodMapping(ReflectionMethod $reflector, string $key): HydrationMappingInterface
+    {
+        return new MethodMapping($reflector, new HydrationKey($key));
     }
 
     /**

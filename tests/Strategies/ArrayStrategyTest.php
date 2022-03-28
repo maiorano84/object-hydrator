@@ -5,7 +5,7 @@ namespace Maiorano\ObjectHydrator\Tests\Strategies;
 use Maiorano\ObjectHydrator\Mappings\HydrationMappingInterface;
 use Maiorano\ObjectHydrator\Strategies\ArrayStrategy;
 use Maiorano\ObjectHydrator\Strategies\HydrationStrategyInterface;
-use Maiorano\ObjectHydrator\Tests\Fixtures\ArrayConfigurationFixture;
+use Maiorano\ObjectHydrator\Tests\Fixtures\ArrayFixture;
 use PHPUnit\Framework\TestCase;
 
 class ArrayStrategyTest extends TestCase
@@ -18,10 +18,10 @@ class ArrayStrategyTest extends TestCase
         $this->strategy = new ArrayStrategy([
             'private' => true,
             'protected' => true,
-            'public' => true,
+            'namedProp' => 'public',
             'innerFixture' => 'setInnerFixture'
         ]);
-        $this->strategy->initialize(new ArrayConfigurationFixture);
+        $this->strategy->initialize(new ArrayFixture);
     }
 
     public function testGetMapping()
@@ -33,7 +33,8 @@ class ArrayStrategyTest extends TestCase
     {
         $this->assertTrue($this->strategy->hasMatchingKey('private'));
         $this->assertTrue($this->strategy->hasMatchingKey('protected'));
-        $this->assertTrue($this->strategy->hasMatchingKey('public'));
+        $this->assertTrue($this->strategy->hasMatchingKey('namedProp'));
+        $this->assertFalse($this->strategy->hasMatchingKey('public'));
         $this->assertFalse($this->strategy->hasMatchingKey('unset'));
     }
 

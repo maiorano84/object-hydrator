@@ -5,6 +5,7 @@ namespace Maiorano\ObjectHydrator\Tests\Strategies\Reflection;
 use Maiorano\ObjectHydrator\Mappings\HydrationMappingInterface;
 use Maiorano\ObjectHydrator\Strategies\HydrationStrategyInterface;
 use Maiorano\ObjectHydrator\Strategies\Reflection\PropertiesStrategy;
+use Maiorano\ObjectHydrator\Tests\Fixtures\InnerFixture;
 use Maiorano\ObjectHydrator\Tests\Fixtures\PropertiesFixture;
 use PHPUnit\Framework\TestCase;
 
@@ -29,6 +30,12 @@ class PropertiesStrategyTest extends TestCase
     {
         $this->assertTrue($this->strategy->isRecursive('innerFixture', []));
         $this->assertFalse($this->strategy->isRecursive('innerFixture', null));
+    }
+
+    public function testRecursiveNoType()
+    {
+        $this->strategy->initialize(new InnerFixture);
+        $this->assertFalse($this->strategy->isRecursive('foo', 'foo'));
     }
 
     public function testGetMapping()
