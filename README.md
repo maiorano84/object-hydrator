@@ -244,5 +244,5 @@ If no Attributes are found, then the Reflection Strategies will try to determine
 
 Possible points of improvement:
 
-* Method Reflection is currently limited only to one parameter.
-* Additional attributes may be needed to flesh out exclusion logic
+* Method Reflection is currently limited only to one parameter for recursion.
+* Additional attributes may be needed to flesh out possible exclusion logic to prevent mapping on public properties

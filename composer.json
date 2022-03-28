@@ -3,6 +3,7 @@
     "description": "Hydration package for PHP Objects",
     "type": "library",
     "license": "MIT",
+    "keywords": ["hydration", "entities"],
     "autoload": {
         "psr-4": {
             "Maiorano\\ObjectHydrator\\": "src/"
@@ -24,5 +25,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "phpunit": "phpunit --verbose --coverage-clover=clover.xml"
     }
 }
