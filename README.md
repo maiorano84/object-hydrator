@@ -6,6 +6,7 @@ A small utility to streamline Object Hydration
 [![Latest Stable Version](https://poser.pugx.org/maiorano84/object-hydrator/v/stable)](https://packagist.org/packages/maiorano84/object-hydrator)
 [![Total Downloads](https://poser.pugx.org/maiorano84/object-hydrator/downloads)](https://packagist.org/packages/maiorano84/object-hydrator)
 [![License](https://poser.pugx.org/maiorano84/object-hydrator/license)](https://packagist.org/packages/maiorano84/object-hydrator)
+[![Build Status](https://app.travis-ci.com/maiorano84/object-hydrator.svg?branch=master)](https://travis-ci.com/github/maiorano84/object-hydrator)
 
 ## Requirements
 Object Hydrator requires PHP 8.1 or greater.
