@@ -3,7 +3,6 @@
 namespace Maiorano\ObjectHydrator\Mappings;
 
 use ReflectionNamedType;
-use Reflector;
 
 interface HydrationMappingInterface
 {
