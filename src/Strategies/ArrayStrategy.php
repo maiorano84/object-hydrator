@@ -12,6 +12,7 @@ use ReflectionProperty;
 
 class ArrayStrategy implements HydrationStrategyInterface
 {
+    use DirectKeyAccessTrait;
     use RecursiveCheckTrait;
 
     /**
@@ -75,23 +76,5 @@ class ArrayStrategy implements HydrationStrategyInterface
     private function createMethodMapping(ReflectionMethod $reflector, string $key): HydrationMappingInterface
     {
         return new MethodMapping($reflector, new HydrationKey($key));
-    }
-
-    /**
-     * @param string $key
-     * @return bool
-     */
-    public function hasMatchingKey(string $key): bool
-    {
-        return isset($this->mappings[$key]);
-    }
-
-    /**
-     * @param string $key
-     * @return HydrationMappingInterface
-     */
-    public function getMapping(string $key): HydrationMappingInterface
-    {
-        return $this->mappings[$key];
     }
 }

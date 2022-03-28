@@ -174,9 +174,16 @@ use App\ComplexUser;
 use Maiorano\ObjectHydrator\Hydrator;
 
 $hydrator = new Hydrator;
-$user = $hydrator->hydrate(SimpleUser::class, [
+$user = $this->hydrator->hydrate(ComplexUser::class, [
+    '_id' => 1,
+    '_email' => 'maiorano84@gmail.com',
+    '_password' => 'secret',
     'username' => 'maiorano84',
-    'password' => 'secret',
+    'avatar' => [
+        '_id' => 123,
+        'name' => 'maiorano84.jpg',
+        'filePath' => 'path/to/avatars'
+    ],
 ]);
 print_r($user);
 /*
@@ -195,3 +202,47 @@ App\ComplexUser Object
 )
 */
 ```
+
+### The Hydrator
+
+The Hydrator can be thought of as an orchestration tool. It doesn't really do any property setting or method invocations
+itself, but rather loops through all of the key/value pairs and determines the best Strategy to use.
+
+### Hydration Strategies
+
+Hydration Strategies encapsulate the logic to determine how input keys and values are mapped to properties or methods.
+Every Hydration Strategy will expose an underlying Mapping Interface that can be used to define the relationship between
+a given key and its associated property/method.
+
+Other methods are used to determine if a given key is available within a strategy, or if a value can be considered
+recursive.
+
+See the `Maiorano\ObjectHydrator\Strategies\HydrationStrategyInterface` for more details.
+
+### Hydration Mappings
+
+Mappings carry both a Hydration Key as well as a Reflection Object containing information about the associated
+property or method. A mapping serves primarily to store a given association, as well as to complete the appropriate
+hydration invocation.
+
+See the `Maiorano\ObjectHydrator\Mappings\HydrationMappingInterface` for more details.
+
+### Hydration Keys
+
+Hydration Keys serve as indicators for input. All input for a given hydration attempt is expected to be a structured
+associative array, with all keys of the array representing an expected Hydration Key.
+
+The default Reflection Strategies will look first to any Properties/Methods with an explicit `HydrationKey` decorator.
+
+If no Attributes are found, then the Reflection Strategies will try to determine one by name:
+
+* In the case of Properties, matching names will be considered an association and a Mapping will be created.
+* In the case of Methods, if the method starts with `set` and the rest of its name matches a given property, then a Mapping will be created using that key.
+* The Reflection Strategies default only to `public` properties or methods. This may be overriden using the `HydrationStrategy` decorator.
+
+## Other Notes
+
+Possible points of improvement:
+
+* Method Reflection is currently limited only to one parameter.
+* Additional attributes may be needed to flesh out exclusion logic

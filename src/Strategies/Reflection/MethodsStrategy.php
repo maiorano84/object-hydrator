@@ -5,6 +5,7 @@ namespace Maiorano\ObjectHydrator\Strategies\Reflection;
 use Generator;
 use Maiorano\ObjectHydrator\Attributes\HydrationKey;
 use Maiorano\ObjectHydrator\Mappings\MethodMapping;
+use Maiorano\ObjectHydrator\Strategies\DirectKeyAccessTrait;
 use Maiorano\ObjectHydrator\Strategies\HydrationStrategyInterface;
 use Maiorano\ObjectHydrator\Strategies\RecursiveCheckTrait;
 use ReflectionClass;
@@ -12,6 +13,7 @@ use ReflectionMethod;
 
 final class MethodsStrategy implements HydrationStrategyInterface
 {
+    use DirectKeyAccessTrait;
     use RecursiveCheckTrait;
     use AttributeReflectionTrait;
 
@@ -30,7 +32,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
     /**
      * @var MethodMapping[]
      */
-    private array $methods;
+    private array $mappings;
 
     /**
      * @param int|null $methodTypes
@@ -49,27 +51,9 @@ final class MethodsStrategy implements HydrationStrategyInterface
     public function initialize(object $object): void
     {
         $this->reflectionClass = new ReflectionClass($object);
-        $this->methods = iterator_to_array($this->generateKeyMap(
+        $this->mappings = iterator_to_array($this->generateKeyMap(
             $this->reflectionClass->getMethods($this->methodTypes)
         ));
-    }
-
-    /**
-     * @param string $key
-     * @return bool
-     */
-    public function hasMatchingKey(string $key): bool
-    {
-        return isset($this->methods[$key]);
-    }
-
-    /**
-     * @param string $key
-     * @return MethodMapping
-     */
-    public function getMapping(string $key): MethodMapping
-    {
-        return $this->methods[$key];
     }
 
     /**
