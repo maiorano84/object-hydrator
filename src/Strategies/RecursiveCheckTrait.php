@@ -8,7 +8,8 @@ trait RecursiveCheckTrait
 {
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function isRecursive(string $key, mixed $value): bool
@@ -18,7 +19,8 @@ trait RecursiveCheckTrait
 
     /**
      * @param ReflectionType|null $type
-     * @param mixed $value
+     * @param mixed               $value
+     *
      * @return bool
      */
     private function checkTypeRecursion(?ReflectionType $type, mixed $value): bool
@@ -31,6 +33,7 @@ trait RecursiveCheckTrait
         if ($allowsNull && is_null($value)) {
             return false;
         }
+
         return !is_scalar($value) && !$type->isBuiltin();
     }
 }

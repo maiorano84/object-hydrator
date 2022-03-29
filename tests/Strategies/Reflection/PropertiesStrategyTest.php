@@ -15,8 +15,8 @@ class PropertiesStrategyTest extends TestCase
 
     public function setUp(): void
     {
-        $this->strategy = new PropertiesStrategy;
-        $this->strategy->initialize(new PropertiesFixture);
+        $this->strategy = new PropertiesStrategy();
+        $this->strategy->initialize(new PropertiesFixture());
     }
 
     public function testHasMatchingKey()
@@ -34,7 +34,7 @@ class PropertiesStrategyTest extends TestCase
 
     public function testRecursiveNoType()
     {
-        $this->strategy->initialize(new InnerFixture);
+        $this->strategy->initialize(new InnerFixture());
         $this->assertFalse($this->strategy->isRecursive('foo', 'foo'));
     }
 

@@ -14,7 +14,7 @@ class HydratorReadmeExamplesTest extends TestCase
 
     public function setUp(): void
     {
-        $this->hydrator = new Hydrator;
+        $this->hydrator = new Hydrator();
     }
 
     public function testHydrateSimpleUser()
@@ -37,14 +37,14 @@ class HydratorReadmeExamplesTest extends TestCase
          * @var ComplexUser $user
          */
         $user = $this->hydrator->hydrate(ComplexUser::class, [
-            '_id' => 1,
-            '_email' => 'maiorano84@gmail.com',
+            '_id'       => 1,
+            '_email'    => 'maiorano84@gmail.com',
             '_password' => 'secret',
-            'username' => 'maiorano84',
-            'avatar' => [
-                '_id' => 123,
-                'name' => 'maiorano84.jpg',
-                'filePath' => 'path/to/avatars'
+            'username'  => 'maiorano84',
+            'avatar'    => [
+                '_id'      => 123,
+                'name'     => 'maiorano84.jpg',
+                'filePath' => 'path/to/avatars',
             ],
         ]);
 

@@ -5,12 +5,12 @@ namespace Maiorano\ObjectHydrator\Mappings;
 use ReflectionNamedType;
 
 /**
- * Defines an association between a Key and an object's Property or Method
+ * Defines an association between a Key and an object's Property or Method.
  */
 interface HydrationMappingInterface
 {
     /**
-     * Retrieves the underlying key
+     * Retrieves the underlying key.
      *
      * @return string
      */
@@ -18,7 +18,7 @@ interface HydrationMappingInterface
 
     /**
      * Gets the Named Type for an associated Property or method
-     * TODO: Consider handling Union Types, or other edge cases
+     * TODO: Consider handling Union Types, or other edge cases.
      *
      * @return ?ReflectionNamedType
      */
@@ -26,10 +26,11 @@ interface HydrationMappingInterface
 
     /**
      * Sets the underlying property value or invokes the underlying
-     * method on the object
+     * method on the object.
      *
      * @param object $object
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return void
      */
     public function setValue(object $object, mixed $value): void;

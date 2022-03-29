@@ -36,7 +36,7 @@ class MethodMappingTest extends TestCase
 
     public function testSetValue()
     {
-        $fixture = new MethodsFixture;
+        $fixture = new MethodsFixture();
         $this->reflector->expects($this->once())
             ->method('invoke')
             ->with(

@@ -36,7 +36,7 @@ class PropertyMappingTest extends TestCase
 
     public function testSetValue()
     {
-        $fixture = new PropertiesFixture;
+        $fixture = new PropertiesFixture();
         $this->reflector->expects($this->once())
             ->method('setValue')
             ->with(

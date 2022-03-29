@@ -21,7 +21,7 @@ class MethodMapping implements HydrationMappingInterface
 
     /**
      * @param ReflectionMethod $reflector
-     * @param HydrationKey $key
+     * @param HydrationKey     $key
      */
     public function __construct(ReflectionMethod $reflector, HydrationKey $key)
     {
@@ -45,14 +45,17 @@ class MethodMapping implements HydrationMappingInterface
     public function getType(): ?ReflectionNamedType
     {
         $parameters = $this->reflector->getParameters();
+
         return $parameters[0]?->getType();
     }
 
     /**
      * @param object $object
-     * @param mixed $value
-     * @return void
+     * @param mixed  $value
+     *
      * @throws ReflectionException
+     *
+     * @return void
      */
     public function setValue(object $object, mixed $value): void
     {

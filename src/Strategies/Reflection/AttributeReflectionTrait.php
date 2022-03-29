@@ -11,6 +11,7 @@ trait AttributeReflectionTrait
 {
     /**
      * @param ReflectionProperty[]|ReflectionMethod[] $reflectors
+     *
      * @return Generator
      */
     private function generateKeyMap(array $reflectors): Generator

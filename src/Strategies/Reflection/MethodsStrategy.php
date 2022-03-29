@@ -36,7 +36,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param int|null $methodTypes
-     * @param string $prefix
+     * @param string   $prefix
      */
     public function __construct(?int $methodTypes = ReflectionMethod::IS_PUBLIC, string $prefix = 'set')
     {
@@ -46,6 +46,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param object $object
+     *
      * @return void
      */
     public function initialize(object $object): void
@@ -58,7 +59,8 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $method
-     * @param array $attributes
+     * @param array            $attributes
+     *
      * @return Generator
      */
     private function generateKeysFromAttributes(ReflectionMethod $method, array $attributes): Generator
@@ -71,6 +73,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $method
+     *
      * @return Generator
      */
     private function generateKeysFromNames(ReflectionMethod $method): Generator
@@ -83,7 +86,8 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $method
-     * @param string $name
+     * @param string           $name
+     *
      * @return Generator
      */
     private function checkPropertyNames(ReflectionMethod $method, string $name): Generator
@@ -99,6 +103,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param string $name
+     *
      * @return string
      */
     private function cleanName(string $name): string

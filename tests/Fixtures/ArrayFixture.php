@@ -6,10 +6,10 @@ use Maiorano\ObjectHydrator\Attributes\HydrationStrategy;
 use Maiorano\ObjectHydrator\Strategies\ArrayStrategy;
 
 #[HydrationStrategy(ArrayStrategy::class, [
-    'private' => true,
-    'protected' => true,
-    'namedProp' => 'public',
-    'innerFixture' => 'setInnerFixture'
+    'private'      => true,
+    'protected'    => true,
+    'namedProp'    => 'public',
+    'innerFixture' => 'setInnerFixture',
 ])]
 class ArrayFixture
 {

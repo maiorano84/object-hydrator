@@ -16,9 +16,11 @@ final class Hydrator implements HydratorInterface
 {
     /**
      * @param string|object $object
-     * @param array $input
-     * @return object
+     * @param array         $input
+     *
      * @throws ReflectionException
+     *
+     * @return object
      */
     public function hydrate(string|object $object, array $input): object
     {
@@ -39,6 +41,7 @@ final class Hydrator implements HydratorInterface
 
     /**
      * @param ReflectionClass $reflect
+     *
      * @return Generator
      */
     private function generateStrategies(ReflectionClass $reflect): Generator
@@ -51,6 +54,7 @@ final class Hydrator implements HydratorInterface
 
     /**
      * @param ReflectionAttribute[] $attributes
+     *
      * @return Generator
      */
     private function loadFromAttributes(array $attributes): Generator
@@ -67,14 +71,15 @@ final class Hydrator implements HydratorInterface
      */
     private function loadFromDefaults(): Generator
     {
-        yield new PropertiesStrategy;
-        yield new MethodsStrategy;
+        yield new PropertiesStrategy();
+        yield new MethodsStrategy();
     }
 
     /**
      * @param HydrationStrategyInterface[] $strategies
-     * @param object $object
-     * @param string $key
+     * @param object                       $object
+     * @param string                       $key
+     *
      * @return HydrationStrategyInterface|null
      */
     private function locateStrategy(array $strategies, object $object, string $key): ?HydrationStrategyInterface
@@ -85,22 +90,26 @@ final class Hydrator implements HydratorInterface
                 return $strategy;
             }
         }
+
         return null;
     }
 
     /**
      * @param HydrationStrategyInterface $strategy
-     * @param object $object
-     * @param string $key
-     * @param mixed $value
-     * @return void
+     * @param object                     $object
+     * @param string                     $key
+     * @param mixed                      $value
+     *
      * @throws ReflectionException
+     *
+     * @return void
      */
     private function executeStrategy(HydrationStrategyInterface $strategy, object $object, string $key, mixed $value): void
     {
         $mapping = $strategy->getMapping($key);
         if (!$strategy->isRecursive($key, $value)) {
             $mapping->setValue($object, $value);
+
             return;
         }
 
