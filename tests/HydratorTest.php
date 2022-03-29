@@ -24,10 +24,10 @@ class HydratorTest extends TestCase
          * @var PropertiesFixture $hydrated
          */
         $hydrated = $this->hydrator->hydrate(new PropertiesFixture(), [
-            'unset'             => 'unset',
+            'unset' => 'unset',
             'explicitAttribute' => 'hello',
-            'testString'        => 'world',
-            'innerFixture'      => [
+            'testString' => 'world',
+            'innerFixture' => [
                 'foo' => 'hello',
                 'bar' => 'world',
             ],
@@ -45,10 +45,10 @@ class HydratorTest extends TestCase
          * @var MethodsFixture $hydrated
          */
         $hydrated = $this->hydrator->hydrate(new MethodsFixture(), [
-            'unset'             => 'unset',
+            'unset' => 'unset',
             'explicitAttribute' => 'hello',
-            'testString'        => 'world',
-            'innerFixture'      => [
+            'testString' => 'world',
+            'innerFixture' => [
                 'foo' => 'hello',
                 'bar' => 'world',
             ],
@@ -66,10 +66,10 @@ class HydratorTest extends TestCase
          * @var ArrayFixture $hydrated
          */
         $hydrated = $this->hydrator->hydrate(new ArrayFixture(), [
-            'unset'        => 2,
-            'namedProp'    => 'foo',
-            'protected'    => 'bar',
-            'private'      => 'baz',
+            'unset' => 2,
+            'namedProp' => 'foo',
+            'protected' => 'bar',
+            'private' => 'baz',
             'innerFixture' => [
                 'foo' => 'hello',
                 'bar' => 'world',

@@ -7,6 +7,7 @@ use Maiorano\ObjectHydrator\Attributes\HydrationKey;
 use Maiorano\ObjectHydrator\Mappings\HydrationMappingInterface;
 use Maiorano\ObjectHydrator\Mappings\MethodMapping;
 use Maiorano\ObjectHydrator\Mappings\PropertyMapping;
+use ReflectionException;
 use ReflectionMethod;
 use ReflectionProperty;
 
@@ -42,43 +43,24 @@ class ArrayStrategy implements HydrationStrategyInterface
         $this->mappings = iterator_to_array($this->generateMappings($object));
     }
 
+
     /**
      * @param object $object
-     *
      * @return Generator
+     * @throws ReflectionException
      */
     private function generateMappings(object $object): Generator
     {
         foreach ($this->config as $key => $value) {
-            if ($value === true && property_exists($object, $key)) {
-                yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $key), $key);
-            } elseif (is_string($value) && property_exists($object, $value)) {
-                yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $value), $key);
-            } elseif (is_string($value) && method_exists($object, $value)) {
-                yield $key => $this->createMethodMapping(new ReflectionMethod($object, $value), $key);
+            $k = $value === true ? $key : $value;
+            $hasProperty = property_exists($object, $k);
+            $hasMethod = method_exists($object, $k);
+            if ($hasProperty || $hasMethod) {
+                $hydrationKey = new HydrationKey($k);
+                yield $k => $hasProperty
+                    ? new PropertyMapping(new ReflectionProperty($object, $value), $hydrationKey)
+                    : new MethodMapping(new ReflectionMethod($object, $value), $hydrationKey);
             }
         }
-    }
-
-    /**
-     * @param ReflectionProperty $reflector
-     * @param string             $key
-     *
-     * @return HydrationMappingInterface
-     */
-    private function createPropertyMapping(ReflectionProperty $reflector, string $key): HydrationMappingInterface
-    {
-        return new PropertyMapping($reflector, new HydrationKey($key));
-    }
-
-    /**
-     * @param ReflectionMethod $reflector
-     * @param string           $key
-     *
-     * @return HydrationMappingInterface
-     */
-    private function createMethodMapping(ReflectionMethod $reflector, string $key): HydrationMappingInterface
-    {
-        return new MethodMapping($reflector, new HydrationKey($key));
     }
 }

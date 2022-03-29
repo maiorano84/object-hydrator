@@ -18,7 +18,7 @@ final class HydrationStrategy
 
     /**
      * @param string $strategy
-     * @param mixed  ...$args
+     * @param mixed ...$args
      */
     public function __construct(string $strategy, mixed ...$args)
     {

@@ -20,7 +20,7 @@ class PropertyMapping implements HydrationMappingInterface
 
     /**
      * @param ReflectionProperty $reflector
-     * @param HydrationKey       $key
+     * @param HydrationKey $key
      */
     public function __construct(ReflectionProperty $reflector, HydrationKey $key)
     {
@@ -48,7 +48,7 @@ class PropertyMapping implements HydrationMappingInterface
 
     /**
      * @param object $object
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return void
      */

@@ -21,7 +21,7 @@ class MethodMapping implements HydrationMappingInterface
 
     /**
      * @param ReflectionMethod $reflector
-     * @param HydrationKey     $key
+     * @param HydrationKey $key
      */
     public function __construct(ReflectionMethod $reflector, HydrationKey $key)
     {
@@ -51,11 +51,11 @@ class MethodMapping implements HydrationMappingInterface
 
     /**
      * @param object $object
-     * @param mixed  $value
-     *
-     * @throws ReflectionException
+     * @param mixed $value
      *
      * @return void
+     * @throws ReflectionException
+     *
      */
     public function setValue(object $object, mixed $value): void
     {

@@ -15,9 +15,9 @@ class ArrayStrategyTest extends TestCase
     public function setUp(): void
     {
         $this->strategy = new ArrayStrategy([
-            'private'      => true,
-            'protected'    => true,
-            'namedProp'    => 'public',
+            'private' => true,
+            'protected' => true,
+            'namedProp' => 'public',
             'innerFixture' => 'setInnerFixture',
         ]);
         $this->strategy->initialize(new ArrayFixture());
