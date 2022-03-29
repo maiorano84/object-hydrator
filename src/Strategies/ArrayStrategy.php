@@ -43,11 +43,12 @@ class ArrayStrategy implements HydrationStrategyInterface
         $this->mappings = iterator_to_array($this->generateMappings($object));
     }
 
-
     /**
      * @param object $object
-     * @return Generator
+     *
      * @throws ReflectionException
+     *
+     * @return Generator
      */
     private function generateMappings(object $object): Generator
     {
@@ -56,9 +57,9 @@ class ArrayStrategy implements HydrationStrategyInterface
             $hasProperty = property_exists($object, $k);
             $hasMethod = method_exists($object, $k);
             if ($hasProperty || $hasMethod) {
-                $hydrationKey = new HydrationKey($k);
-                yield $k => $hasProperty
-                    ? new PropertyMapping(new ReflectionProperty($object, $value), $hydrationKey)
+                $hydrationKey = new HydrationKey($key);
+                yield $key => $hasProperty
+                    ? new PropertyMapping(new ReflectionProperty($object, $k), $hydrationKey)
                     : new MethodMapping(new ReflectionMethod($object, $value), $hydrationKey);
             }
         }

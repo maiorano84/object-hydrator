@@ -29,7 +29,7 @@ interface HydrationMappingInterface
      * method on the object.
      *
      * @param object $object
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return void
      */
