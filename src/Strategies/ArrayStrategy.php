@@ -57,9 +57,9 @@ class ArrayStrategy implements HydrationStrategyInterface
             $hasProperty = property_exists($object, $k);
             $hasMethod = method_exists($object, $k);
             if ($hasProperty || $hasMethod) {
-                $hydrationKey = new HydrationKey($k);
-                yield $k => $hasProperty
-                    ? new PropertyMapping(new ReflectionProperty($object, $value), $hydrationKey)
+                $hydrationKey = new HydrationKey($key);
+                yield $key => $hasProperty
+                    ? new PropertyMapping(new ReflectionProperty($object, $k), $hydrationKey)
                     : new MethodMapping(new ReflectionMethod($object, $value), $hydrationKey);
             }
         }
