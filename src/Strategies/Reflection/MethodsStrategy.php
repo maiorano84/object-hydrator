@@ -35,7 +35,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param int|null $methodTypes
-     * @param string $prefix
+     * @param string   $prefix
      */
     public function __construct(?int $methodTypes = ReflectionMethod::IS_PUBLIC, string $prefix = 'set')
     {
@@ -69,7 +69,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $method
-     * @param array $attributes
+     * @param array            $attributes
      *
      * @return Generator
      */
@@ -96,7 +96,7 @@ final class MethodsStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $method
-     * @param string $name
+     * @param string           $name
      *
      * @return Generator
      */

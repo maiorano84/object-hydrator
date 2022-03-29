@@ -32,7 +32,7 @@ interface HydrationStrategyInterface
      * Determines if the hydrator should recurse through this value.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return bool
      */

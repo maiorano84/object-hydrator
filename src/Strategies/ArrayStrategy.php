@@ -43,11 +43,12 @@ class ArrayStrategy implements HydrationStrategyInterface
         $this->mappings = iterator_to_array($this->generateMappings($object));
     }
 
-
     /**
      * @param object $object
-     * @return Generator
+     *
      * @throws ReflectionException
+     *
+     * @return Generator
      */
     private function generateMappings(object $object): Generator
     {

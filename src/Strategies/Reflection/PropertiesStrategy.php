@@ -63,7 +63,7 @@ final class PropertiesStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionProperty $property
-     * @param array $attributes
+     * @param array              $attributes
      *
      * @return Generator
      */
