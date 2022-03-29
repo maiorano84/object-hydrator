@@ -15,7 +15,6 @@ final class MethodsStrategy implements HydrationStrategyInterface
 {
     use DirectKeyAccessTrait;
     use RecursiveCheckTrait;
-    use AttributeReflectionTrait;
 
     /**
      * @var int|null
@@ -52,9 +51,20 @@ final class MethodsStrategy implements HydrationStrategyInterface
     public function initialize(object $object): void
     {
         $this->reflectionClass = new ReflectionClass($object);
-        $this->mappings = iterator_to_array($this->generateKeyMap(
-            $this->reflectionClass->getMethods($this->methodTypes)
-        ));
+        $this->mappings = iterator_to_array($this->generateKeyMap());
+    }
+
+    /**
+     * @return Generator
+     */
+    private function generateKeyMap(): Generator
+    {
+        foreach ($this->reflectionClass->getMethods($this->methodTypes) as $reflector) {
+            $attributes = $reflector->getAttributes(HydrationKey::class);
+            yield from $attributes
+                ? $this->generateKeysFromAttributes($reflector, $attributes)
+                : $this->generateKeysFromNames($reflector);
+        }
     }
 
     /**
