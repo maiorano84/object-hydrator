@@ -15,7 +15,7 @@ class HydratorTest extends TestCase
 
     public function setUp(): void
     {
-        $this->hydrator = new Hydrator;
+        $this->hydrator = new Hydrator();
     }
 
     public function testHydrateProperties()
@@ -23,11 +23,11 @@ class HydratorTest extends TestCase
         /**
          * @var PropertiesFixture $hydrated
          */
-        $hydrated = $this->hydrator->hydrate(new PropertiesFixture, [
-            'unset' => 'unset',
+        $hydrated = $this->hydrator->hydrate(new PropertiesFixture(), [
+            'unset'             => 'unset',
             'explicitAttribute' => 'hello',
-            'testString' => 'world',
-            'innerFixture' => [
+            'testString'        => 'world',
+            'innerFixture'      => [
                 'foo' => 'hello',
                 'bar' => 'world',
             ],
@@ -44,11 +44,11 @@ class HydratorTest extends TestCase
         /**
          * @var MethodsFixture $hydrated
          */
-        $hydrated = $this->hydrator->hydrate(new MethodsFixture, [
-            'unset' => 'unset',
+        $hydrated = $this->hydrator->hydrate(new MethodsFixture(), [
+            'unset'             => 'unset',
             'explicitAttribute' => 'hello',
-            'testString' => 'world',
-            'innerFixture' => [
+            'testString'        => 'world',
+            'innerFixture'      => [
                 'foo' => 'hello',
                 'bar' => 'world',
             ],
@@ -65,11 +65,11 @@ class HydratorTest extends TestCase
         /**
          * @var ArrayFixture $hydrated
          */
-        $hydrated = $this->hydrator->hydrate(new ArrayFixture, [
-            'unset' => 2,
-            'namedProp' => 'foo',
-            'protected' => 'bar',
-            'private' => 'baz',
+        $hydrated = $this->hydrator->hydrate(new ArrayFixture(), [
+            'unset'        => 2,
+            'namedProp'    => 'foo',
+            'protected'    => 'bar',
+            'private'      => 'baz',
             'innerFixture' => [
                 'foo' => 'hello',
                 'bar' => 'world',
@@ -89,7 +89,7 @@ class HydratorTest extends TestCase
         /**
          * @var PropertiesFixture $hydrated
          */
-        $hydrated = $this->hydrator->hydrate(new PropertiesFixture, [
+        $hydrated = $this->hydrator->hydrate(new PropertiesFixture(), [
             'innerFixture' => null,
         ]);
 

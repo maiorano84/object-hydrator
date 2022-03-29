@@ -40,6 +40,7 @@ final class PropertiesStrategy implements HydrationStrategyInterface
 
     /**
      * @param object $object
+     *
      * @return void
      */
     public function initialize(object $object): void
@@ -52,7 +53,8 @@ final class PropertiesStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionProperty $property
-     * @param array $attributes
+     * @param array              $attributes
+     *
      * @return Generator
      */
     private function generateKeysFromAttributes(ReflectionProperty $property, array $attributes): Generator
@@ -65,6 +67,7 @@ final class PropertiesStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionProperty $property
+     *
      * @return Generator
      */
     private function generateKeysFromNames(ReflectionProperty $property): Generator

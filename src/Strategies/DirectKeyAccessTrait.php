@@ -8,6 +8,7 @@ trait DirectKeyAccessTrait
 {
     /**
      * @param string $key
+     *
      * @return bool
      */
     public function hasMatchingKey(string $key): bool
@@ -17,6 +18,7 @@ trait DirectKeyAccessTrait
 
     /**
      * @param string $key
+     *
      * @return HydrationMappingInterface
      */
     public function getMapping(string $key): HydrationMappingInterface

@@ -34,6 +34,7 @@ class ArrayStrategy implements HydrationStrategyInterface
 
     /**
      * @param object $object
+     *
      * @return void
      */
     public function initialize(object $object): void
@@ -43,6 +44,7 @@ class ArrayStrategy implements HydrationStrategyInterface
 
     /**
      * @param object $object
+     *
      * @return Generator
      */
     private function generateMappings(object $object): Generator
@@ -50,9 +52,9 @@ class ArrayStrategy implements HydrationStrategyInterface
         foreach ($this->config as $key => $value) {
             if ($value === true && property_exists($object, $key)) {
                 yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $key), $key);
-            } else if (is_string($value) && property_exists($object, $value)) {
+            } elseif (is_string($value) && property_exists($object, $value)) {
                 yield $key => $this->createPropertyMapping(new ReflectionProperty($object, $value), $key);
-            } else if (is_string($value) && method_exists($object, $value)) {
+            } elseif (is_string($value) && method_exists($object, $value)) {
                 yield $key => $this->createMethodMapping(new ReflectionMethod($object, $value), $key);
             }
         }
@@ -60,7 +62,8 @@ class ArrayStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionProperty $reflector
-     * @param string $key
+     * @param string             $key
+     *
      * @return HydrationMappingInterface
      */
     private function createPropertyMapping(ReflectionProperty $reflector, string $key): HydrationMappingInterface
@@ -70,7 +73,8 @@ class ArrayStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionMethod $reflector
-     * @param string $key
+     * @param string           $key
+     *
      * @return HydrationMappingInterface
      */
     private function createMethodMapping(ReflectionMethod $reflector, string $key): HydrationMappingInterface

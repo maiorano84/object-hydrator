@@ -10,18 +10,17 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayStrategyTest extends TestCase
 {
-
     private HydrationStrategyInterface $strategy;
 
     public function setUp(): void
     {
         $this->strategy = new ArrayStrategy([
-            'private' => true,
-            'protected' => true,
-            'namedProp' => 'public',
-            'innerFixture' => 'setInnerFixture'
+            'private'      => true,
+            'protected'    => true,
+            'namedProp'    => 'public',
+            'innerFixture' => 'setInnerFixture',
         ]);
-        $this->strategy->initialize(new ArrayFixture);
+        $this->strategy->initialize(new ArrayFixture());
     }
 
     public function testGetMapping()

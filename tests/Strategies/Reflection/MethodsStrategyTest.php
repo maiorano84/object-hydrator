@@ -14,8 +14,8 @@ class MethodsStrategyTest extends TestCase
 
     public function setUp(): void
     {
-        $this->strategy = new MethodsStrategy;
-        $this->strategy->initialize(new MethodsFixture);
+        $this->strategy = new MethodsStrategy();
+        $this->strategy->initialize(new MethodsFixture());
     }
 
     public function testHasMatchingKey()
