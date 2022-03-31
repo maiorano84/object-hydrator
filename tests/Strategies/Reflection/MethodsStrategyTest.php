@@ -26,11 +26,6 @@ class MethodsStrategyTest extends TestCase
         $this->assertFalse($this->strategy->hasMatchingKey('testAttribute'));
     }
 
-    public function testIsRecursive()
-    {
-        $this->assertFalse($this->strategy->isRecursive('innerFixture', null));
-    }
-
     public function testGetMapping()
     {
         $this->assertInstanceOf(HydrationMappingInterface::class, $this->strategy->getMapping('explicitAttribute'));

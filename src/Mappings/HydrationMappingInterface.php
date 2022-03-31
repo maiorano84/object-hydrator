@@ -29,9 +29,18 @@ interface HydrationMappingInterface
      * method on the object.
      *
      * @param object $object
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return void
      */
     public function setValue(object $object, mixed $value): void;
+
+    /**
+     * Determines if the hydrator should recurse through this value.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isRecursive(mixed $value): bool;
 }

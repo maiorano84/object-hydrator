@@ -37,13 +37,13 @@ class HydratorReadmeExamplesTest extends TestCase
          * @var ComplexUser $user
          */
         $user = $this->hydrator->hydrate(ComplexUser::class, [
-            '_id'       => 1,
-            '_email'    => 'maiorano84@gmail.com',
+            '_id' => 1,
+            '_email' => 'maiorano84@gmail.com',
             '_password' => 'secret',
-            'username'  => 'maiorano84',
-            'avatar'    => [
-                '_id'      => 123,
-                'name'     => 'maiorano84.jpg',
+            'username' => 'maiorano84',
+            'avatar' => [
+                '_id' => 123,
+                'name' => 'maiorano84.jpg',
                 'filePath' => 'path/to/avatars',
             ],
         ]);

@@ -7,13 +7,11 @@ use Maiorano\ObjectHydrator\Attributes\HydrationKey;
 use Maiorano\ObjectHydrator\Mappings\PropertyMapping;
 use Maiorano\ObjectHydrator\Strategies\DirectKeyAccessTrait;
 use Maiorano\ObjectHydrator\Strategies\HydrationStrategyInterface;
-use Maiorano\ObjectHydrator\Strategies\RecursiveCheckTrait;
 use ReflectionClass;
 use ReflectionProperty;
 
 final class PropertiesStrategy implements HydrationStrategyInterface
 {
-    use RecursiveCheckTrait;
     use DirectKeyAccessTrait;
 
     /**
@@ -63,7 +61,7 @@ final class PropertiesStrategy implements HydrationStrategyInterface
 
     /**
      * @param ReflectionProperty $property
-     * @param array              $attributes
+     * @param array $attributes
      *
      * @return Generator
      */

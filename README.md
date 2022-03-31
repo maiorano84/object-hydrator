@@ -83,13 +83,14 @@ $user = $hydrator->hydrate(SimpleUser::class, [
     'password' => 'secret',
 ]);
 print_r($user);
+
 /*
 App\SimpleUser Object
 (
     [username] => maiorano84
     [password:App\SimpleUser:private] => <hashedPassword>
 )
- */
+*/
 ```
 
 By default, classes with no strategy defined will use a combination of the `Reflection\PropertiesStrategy` and
@@ -190,6 +191,7 @@ $user = $this->hydrator->hydrate(ComplexUser::class, [
     ],
 ]);
 print_r($user);
+
 /*
 App\ComplexUser Object
 (

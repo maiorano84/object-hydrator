@@ -29,16 +29,6 @@ interface HydrationStrategyInterface
     public function hasMatchingKey(string $key): bool;
 
     /**
-     * Determines if the hydrator should recurse through this value.
-     *
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return bool
-     */
-    public function isRecursive(string $key, mixed $value): bool;
-
-    /**
      * Returns the underlying mapping for a given key.
      *
      * @param string $key

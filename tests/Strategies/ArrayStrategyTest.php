@@ -15,9 +15,9 @@ class ArrayStrategyTest extends TestCase
     public function setUp(): void
     {
         $this->strategy = new ArrayStrategy([
-            'private'      => true,
-            'protected'    => true,
-            'namedProp'    => 'public',
+            'private' => true,
+            'protected' => true,
+            'namedProp' => 'public',
             'innerFixture' => 'setInnerFixture',
         ]);
         $this->strategy->initialize(new ArrayFixture());
@@ -35,10 +35,5 @@ class ArrayStrategyTest extends TestCase
         $this->assertTrue($this->strategy->hasMatchingKey('namedProp'));
         $this->assertFalse($this->strategy->hasMatchingKey('public'));
         $this->assertFalse($this->strategy->hasMatchingKey('unset'));
-    }
-
-    public function testIsRecursive()
-    {
-        $this->assertTrue($this->strategy->isRecursive('innerFixture', []));
     }
 }

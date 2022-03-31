@@ -16,11 +16,11 @@ final class Hydrator implements HydratorInterface
 {
     /**
      * @param string|object $object
-     * @param array         $input
-     *
-     * @throws ReflectionException
+     * @param array $input
      *
      * @return object
+     * @throws ReflectionException
+     *
      */
     public function hydrate(string|object $object, array $input): object
     {
@@ -77,8 +77,8 @@ final class Hydrator implements HydratorInterface
 
     /**
      * @param HydrationStrategyInterface[] $strategies
-     * @param object                       $object
-     * @param string                       $key
+     * @param object $object
+     * @param string $key
      *
      * @return HydrationStrategyInterface|null
      */
@@ -96,18 +96,18 @@ final class Hydrator implements HydratorInterface
 
     /**
      * @param HydrationStrategyInterface $strategy
-     * @param object                     $object
-     * @param string                     $key
-     * @param mixed                      $value
-     *
-     * @throws ReflectionException
+     * @param object $object
+     * @param string $key
+     * @param mixed $value
      *
      * @return void
+     * @throws ReflectionException
+     *
      */
     private function executeStrategy(HydrationStrategyInterface $strategy, object $object, string $key, mixed $value): void
     {
         $mapping = $strategy->getMapping($key);
-        if (!$strategy->isRecursive($key, $value)) {
+        if (!$mapping->isRecursive($value)) {
             $mapping->setValue($object, $value);
 
             return;

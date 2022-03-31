@@ -6,7 +6,7 @@ interface HydratorInterface
 {
     /**
      * @param string|object $object
-     * @param array         $input
+     * @param array $input
      *
      * @return object
      */

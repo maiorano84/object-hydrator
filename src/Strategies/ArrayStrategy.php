@@ -14,7 +14,6 @@ use ReflectionProperty;
 class ArrayStrategy implements HydrationStrategyInterface
 {
     use DirectKeyAccessTrait;
-    use RecursiveCheckTrait;
 
     /**
      * @var array
@@ -46,9 +45,9 @@ class ArrayStrategy implements HydrationStrategyInterface
     /**
      * @param object $object
      *
+     * @return Generator
      * @throws ReflectionException
      *
-     * @return Generator
      */
     private function generateMappings(object $object): Generator
     {
